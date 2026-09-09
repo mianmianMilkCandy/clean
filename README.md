@@ -70,3 +70,7 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 ## 卸载
 
 运行 `uninstall.ps1`，或手动删除 `%LOCALAPPDATA%\Programs\c-drive-cleaner` 与开始菜单快捷方式，并从用户 PATH 移除安装目录。
+
+## 许可证
+
+本项目采用 [MIT License](LICENSE) 开源协议。
