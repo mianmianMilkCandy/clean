@@ -103,7 +103,21 @@ powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/cle
 
 ## 7 卸载
 
-运行仓库中的 `uninstall.ps1`，或手动删除：
+CMD 或 PowerShell 中均可执行一键卸载：
+
+```powershell
+powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1')"
+```
+
+纯 PowerShell 环境也可用简写：
+
+```powershell
+irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1 | iex
+```
+
+脚本自动完成：停止运行中的程序 → 删除 `%LOCALAPPDATA%\Programs\c-drive-cleaner` 目录 → 从用户 PATH 移除安装目录 → 删除开始菜单快捷方式。Edge WebView2 为系统共享组件，将保留。重复执行安全无副作用。
+
+也可手动删除：
 
 - `%LOCALAPPDATA%\Programs\c-drive-cleaner` 目录
 - 开始菜单快捷方式「C盘垃圾清理」

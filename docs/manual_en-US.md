@@ -103,7 +103,21 @@ Click "跳过指引" (Skip Guide), then click "快速开始" (Quick Start) at th
 
 ## 7 Uninstall
 
-Run `uninstall.ps1` from the repository, or manually delete:
+One-click uninstall, works in both CMD and PowerShell:
+
+```powershell
+powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1')"
+```
+
+Shorthand (PowerShell only):
+
+```powershell
+irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1 | iex
+```
+
+The script automatically stops the running app, deletes the `%LOCALAPPDATA%\Programs\c-drive-cleaner` directory, removes the install directory from the user PATH, and deletes the Start Menu shortcut. Edge WebView2 is kept as a shared system component. Re-running is safe.
+
+Alternatively, delete manually:
 
 - The `%LOCALAPPDATA%\Programs\c-drive-cleaner` directory
 - The Start Menu shortcut

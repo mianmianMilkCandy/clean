@@ -71,9 +71,21 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 - **桌面壳**：pywebview + Edge WebView2 渲染，PyInstaller 单文件打包
 - **分发**：GitHub Release 托管 exe + PowerShell 一键安装脚本
 
-## 卸载
+## 卸载（Uninstall）
 
-运行 `uninstall.ps1`，或手动删除 `%LOCALAPPDATA%\Programs\c-drive-cleaner` 与开始菜单快捷方式，并从用户 PATH 移除安装目录。
+CMD 和 PowerShell 中均可执行（Works in both CMD and PowerShell）：
+
+```powershell
+powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1')"
+```
+
+纯 PowerShell 环境也可用简写：
+
+```powershell
+irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1 | iex
+```
+
+脚本自动完成：停止运行中的程序 → 删除 `%LOCALAPPDATA%\Programs\c-drive-cleaner` → 从用户 PATH 移除安装目录 → 删除开始菜单快捷方式。Edge WebView2 为系统共享组件，将保留（不影响其他应用）。重复执行安全无副作用。
 
 ## 许可证
 

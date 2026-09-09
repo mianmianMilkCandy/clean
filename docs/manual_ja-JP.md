@@ -103,7 +103,21 @@ powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/cle
 
 ## 7 アンインストール
 
-リポジトリの `uninstall.ps1` を実行するか、手動で以下を削除してください：
+CMD と PowerShell のどちらでも実行できるワンクリックアンインストール：
+
+```powershell
+powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1')"
+```
+
+PowerShell 専用の短縮形：
+
+```powershell
+irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1 | iex
+```
+
+スクリプトは自動で：実行中のプログラムを停止 → `%LOCALAPPDATA%\Programs\c-drive-cleaner` ディレクトリを削除 → ユーザー PATH からインストールディレクトリを削除 → スタートメニューのショートカットを削除、を行います。Edge WebView2 は共有システムコンポーネントのため保持されます。再実行しても安全です。
+
+手動で削除する場合：
 
 - `%LOCALAPPDATA%\Programs\c-drive-cleaner` ディレクトリ
 - スタートメニューのショートカット
