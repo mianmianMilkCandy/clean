@@ -8,17 +8,21 @@ A lightweight (~20 MB) Windows desktop app that safely scans and cleans junk fil
 
 ## 一键安装（One-click install）
 
-在 Windows PowerShell 中执行（Right-click → "Run with PowerShell" 或在终端粘贴）：
+CMD 和 PowerShell 中均可执行（Works in both CMD and PowerShell）：
+
+```powershell
+powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1')"
+```
+
+> 注意：`irm ... | iex` 简写只能在 PowerShell 中使用；在 CMD 中会提示「irm 不是内部或外部命令」。上面的 `powershell -Command "..."` 形式在 CMD、PowerShell、Win+R 运行框中通用。
+
+纯 PowerShell 环境也可用简写：
 
 ```powershell
 irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex
 ```
 
-海外网络也可以用 raw 地址：
-
-```powershell
-irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex
-```
+海外网络可以把域名换成 `raw.githubusercontent.com`。
 
 脚本自动完成：下载 `c-clean.exe` → 安装到用户目录 → 注册 `c-clean` 命令 → 创建开始菜单快捷方式「C盘垃圾清理」→ 检测并自动安装 Edge WebView2 运行时（如缺失）→ 立即启动。
 

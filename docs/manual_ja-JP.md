@@ -38,13 +38,15 @@
 
 ### 4.1 ワンクリックインストール（推奨）
 
-Windows PowerShell で以下を実行します：
+CMD と PowerShell のどちらでも実行できます：
 
 ```powershell
-irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex
+powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1')"
 ```
 
-（中国大陸以外のネットワークでは `irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex` も利用できます）
+> 補足：`irm ... | iex` の短縮形は PowerShell 専用です。CMD では「'irm' は内部コマンドまたは外部コマンドとして認識されていません」と表示されます。上記の `powershell -Command "..."` 形式は CMD・PowerShell・Win+R のファイル名を指定して実行のいずれでも利用できます。
+
+（PowerShell 内では `irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex` も使用可能。中国大陸以外ではドメインを `raw.githubusercontent.com` に置き換えられます）
 
 スクリプトは自動的にダウンロード・インストールを行い、`c-clean` コマンドを登録し、スタートメニューにショートカット「C盘垃圾清理」を作成し、WebView2 ランタイム（不足時）をインストールして、アプリケーションを直ちに起動します。
 

@@ -1,7 +1,9 @@
 # ============================================================
 #  C Drive Junk Cleaner - GitHub one-click installer
 #
-#  Usage (any Windows PowerShell):
+#  Usage (works in both CMD and PowerShell):
+#      powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1')"
+#  Shorthand (PowerShell only):
 #      irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex
 #  Also works (outside mainland China):
 #      irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex

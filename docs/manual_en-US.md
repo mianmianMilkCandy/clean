@@ -38,13 +38,15 @@ Any ordinary PC.
 
 ### 4.1 One-click install (recommended)
 
-Run this in Windows PowerShell:
+Works in both CMD and PowerShell:
 
 ```powershell
-irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex
+powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1')"
 ```
 
-(Outside mainland China, `irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex` also works.)
+> Note: the `irm ... | iex` shorthand only works in PowerShell; in CMD it reports "'irm' is not recognized". The `powershell -Command "..."` form above works in CMD, PowerShell and the Win+R Run box.
+
+(Inside PowerShell you may also use `irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex`; replace the domain with `raw.githubusercontent.com` outside mainland China.)
 
 The script automatically downloads and installs the app, registers the `c-clean` command, creates a Start Menu shortcut, installs the WebView2 Runtime if missing, and launches the app.
 
