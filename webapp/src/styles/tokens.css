@@ -1,0 +1,162 @@
+/**
+ * Material 3 浅色配色方案（备用主题：Blue）
+ * 所有颜色通过角色引用；运行时若获得用户强调色，
+ * 由 theme.ts 基于 @material/material-color-utilities 生成并覆盖。
+ */
+:root {
+  color-scheme: light;
+
+  /* ---------- 颜色角色 ---------- */
+  --md-sys-color-primary: #0b57d0;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #d3e3fd;
+  --md-sys-color-on-primary-container: #041e49;
+
+  --md-sys-color-secondary: #5a5c7c;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #dce2f9;
+  --md-sys-color-on-secondary-container: #131c2b;
+
+  --md-sys-color-tertiary: #7a5476;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #ffd8ee;
+  --md-sys-color-on-tertiary-container: #2e1125;
+
+  --md-sys-color-error: #b3261e;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #f9dedc;
+  --md-sys-color-on-error-container: #410e0b;
+
+  --md-sys-color-surface: #faf9fd;
+  --md-sys-color-on-surface: #1b1b1f;
+  --md-sys-color-surface-variant: #e1e2ec;
+  --md-sys-color-on-surface-variant: #44474e;
+  --md-sys-color-surface-dim: #dbd9e0;
+  --md-sys-color-surface-bright: #faf9fd;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #f3f3fa;
+  --md-sys-color-surface-container: #eeedf3;
+  --md-sys-color-surface-container-high: #e9e8ef;
+  --md-sys-color-surface-container-highest: #e3e2e6;
+
+  --md-sys-color-outline: #74777f;
+  --md-sys-color-outline-variant: #c4c6d0;
+
+  --md-sys-color-inverse-surface: #303034;
+  --md-sys-color-inverse-on-surface: #f2f0f4;
+  --md-sys-color-inverse-primary: #a8c7fa;
+
+  --md-sys-color-surface-tint: var(--md-sys-color-primary);
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-shadow: #000000;
+
+  /* ---------- 形状 ---------- */
+  --app-shape-full: 9999px;
+  --app-shape-card: 32px;
+  --app-shape-container: 28px;
+  --app-shape-dialog: 28px;
+  --app-shape-panel: 40px;
+  --app-shape-list-outer: 28px;
+  --app-shape-list-inner: 8px;
+  --app-shape-button-group-inner: 8px;
+  --app-shape-textfield: 28px;
+
+  /* ---------- 动效（MotionScheme.expressive）---------- */
+  --app-ease-spring: cubic-bezier(0.34, 1.46, 0.64, 1);
+  --app-ease-spring-soft: cubic-bezier(0.22, 1.2, 0.36, 1);
+  --app-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --app-ease-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --app-ease-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+
+  /* ---------- 字体（Roboto / M3 标准字重）---------- */
+  --app-font-family: 'Roboto', 'Noto Sans SC', 'Segoe UI', 'PingFang SC',
+    'Microsoft YaHei', system-ui, sans-serif;
+
+  --md-sys-typescale-display-small-size: 36px;
+  --md-sys-typescale-display-small-line-height: 44px;
+  --md-sys-typescale-display-small-weight: 400;
+
+  --md-sys-typescale-headline-small-size: 24px;
+  --md-sys-typescale-headline-small-line-height: 32px;
+  --md-sys-typescale-headline-small-weight: 400;
+
+  --md-sys-typescale-title-large-size: 22px;
+  --md-sys-typescale-title-large-line-height: 28px;
+  --md-sys-typescale-title-large-weight: 400;
+
+  --md-sys-typescale-title-medium-size: 16px;
+  --md-sys-typescale-title-medium-line-height: 24px;
+  --md-sys-typescale-title-medium-weight: 500;
+
+  --md-sys-typescale-title-small-size: 14px;
+  --md-sys-typescale-title-small-line-height: 20px;
+  --md-sys-typescale-title-small-weight: 500;
+
+  --md-sys-typescale-body-large-size: 16px;
+  --md-sys-typescale-body-large-line-height: 24px;
+  --md-sys-typescale-body-large-weight: 400;
+
+  --md-sys-typescale-body-medium-size: 14px;
+  --md-sys-typescale-body-medium-line-height: 20px;
+  --md-sys-typescale-body-medium-weight: 400;
+
+  --md-sys-typescale-body-small-size: 12px;
+  --md-sys-typescale-body-small-line-height: 16px;
+  --md-sys-typescale-body-small-weight: 400;
+
+  --md-sys-typescale-label-large-size: 14px;
+  --md-sys-typescale-label-large-line-height: 20px;
+  --md-sys-typescale-label-large-weight: 500;
+
+  --md-sys-typescale-label-medium-size: 12px;
+  --md-sys-typescale-label-medium-line-height: 16px;
+  --md-sys-typescale-label-medium-weight: 500;
+
+  /* ---------- Material Web 组件定制（胶囊形等）----------
+   * 自定义属性在 :root 上声明后会沿继承链传入各组件的 Shadow DOM，
+   * md-* 元素选择器无法穿透 Shadow 边界，因此一律用属性继承。 */
+  --md-icon-font: 'Material Symbols Rounded';
+
+  --md-filled-button-container-shape: var(--app-shape-full);
+  --md-tonal-button-container-shape: var(--app-shape-full);
+  --md-outlined-button-container-shape: var(--app-shape-full);
+  --md-elevated-button-container-shape: var(--app-shape-full);
+  --md-text-button-container-shape: var(--app-shape-full);
+  --md-filled-button-container-height: 56px;
+  --md-tonal-button-container-height: 56px;
+  --md-outlined-button-container-height: 56px;
+  --md-elevated-button-container-height: 56px;
+  --md-filled-button-label-text-font: var(--app-font-family);
+  --md-tonal-button-label-text-font: var(--app-font-family);
+  --md-outlined-button-label-text-font: var(--app-font-family);
+  --md-elevated-button-label-text-font: var(--app-font-family);
+  --md-text-button-label-text-font: var(--app-font-family);
+  --md-filled-button-label-text-size: 15px;
+  --md-tonal-button-label-text-size: 15px;
+  --md-outlined-button-label-text-size: 15px;
+  --md-elevated-button-label-text-size: 15px;
+  --md-filled-button-label-text-weight: 500;
+  --md-tonal-button-label-text-weight: 500;
+  --md-outlined-button-label-text-weight: 500;
+  --md-elevated-button-label-text-weight: 500;
+  --md-text-button-label-text-weight: 500;
+  --md-outlined-button-outline-width: 1px;
+
+  --md-outlined-text-field-container-shape: 16px;
+  --md-outlined-text-field-container-height: 56px;
+  --md-outlined-text-field-outline-width: 1px;
+  --md-outlined-text-field-focus-outline-width: 2px;
+  --md-outlined-text-field-font: var(--app-font-family);
+  --md-outlined-text-field-label-text-font: var(--app-font-family);
+
+  --md-dialog-container-shape: var(--app-shape-dialog);
+  --md-dialog-container-width: min(312px, calc(100vw - 48px));
+  --md-dialog-container-color: var(--md-sys-color-surface-container-high);
+  --md-dialog-headline-font: var(--app-font-family);
+  --md-dialog-supporting-text-font: var(--app-font-family);
+
+  --md-icon-button-state-layer-height: 48px;
+  --md-icon-button-state-layer-width: 48px;
+
+  --md-circular-progress-active-indicator-color: var(--md-sys-color-primary);
+}

@@ -1,0 +1,21 @@
+{
+  "name": "c-drive-cleaner",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "C盘垃圾清理 · Material 3 Expressive 桌面 Web 应用",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@material/material-color-utilities": "^0.4.0",
+    "@material/web": "^2.5.0",
+    "lit": "^3.3.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "vite": "^7.0.0"
+  }
+}

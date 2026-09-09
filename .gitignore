@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node
+node_modules/
+
+# 构建产物
+build-app/
+build-work/
+
+# IDE
+.idea/
+.vscode/
+
+# 运行时数据（反馈缓存等，首次运行自动生成）
+data/
+
+# 私有上交材料
+上交/
+
+# 系统文件
+Thumbs.db
+Desktop.ini
