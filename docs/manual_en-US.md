@@ -41,8 +41,10 @@ Any ordinary PC.
 Run this in Windows PowerShell:
 
 ```powershell
-irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex
+irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex
 ```
+
+(Outside mainland China, `irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex` also works.)
 
 The script automatically downloads and installs the app, registers the `c-clean` command, creates a Start Menu shortcut, installs the WebView2 Runtime if missing, and launches the app.
 

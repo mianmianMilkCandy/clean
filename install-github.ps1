@@ -2,6 +2,8 @@
 #  C盘垃圾清理 · GitHub 一键安装脚本
 #
 #  用法（在任意 Windows 电脑的 PowerShell 中执行）：
+#      irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex
+#  海外网络亦可用：
 #      irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex
 #
 #  自动完成：

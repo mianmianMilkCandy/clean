@@ -41,8 +41,10 @@
 Windows PowerShell で以下を実行します：
 
 ```powershell
-irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex
+irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex
 ```
+
+（中国大陸以外のネットワークでは `irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex` も利用できます）
 
 スクリプトは自動的にダウンロード・インストールを行い、`c-clean` コマンドを登録し、スタートメニューにショートカット「C盘垃圾清理」を作成し、WebView2 ランタイム（不足時）をインストールして、アプリケーションを直ちに起動します。
 

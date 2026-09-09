@@ -41,8 +41,10 @@
 在 Windows PowerShell 中执行：
 
 ```powershell
-irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex
+irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex
 ```
+
+（海外网络可用 `irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex`）
 
 脚本自动完成下载、安装、注册 `c-clean` 命令、创建开始菜单快捷方式「C盘垃圾清理」、检测并安装 WebView2 运行时（如缺失），并立即启动应用。
 

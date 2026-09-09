@@ -11,6 +11,12 @@ A lightweight (~20 MB) Windows desktop app that safely scans and cleans junk fil
 在 Windows PowerShell 中执行（Right-click → "Run with PowerShell" 或在终端粘贴）：
 
 ```powershell
+irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex
+```
+
+海外网络也可以用 raw 地址：
+
+```powershell
 irm https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1 | iex
 ```
 
