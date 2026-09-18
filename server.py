@@ -267,7 +267,7 @@ def try_send_feedback_mail(payload) -> bool:
 # ---------- HTTP 服务 ----------
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = 'CDiskCleaner/1.0'
+    server_version = 'CDiskCleaner/2.0'
 
     def log_message(self, fmt, *args):
         print(f'  [{self.command}] {self.path} - ' + (fmt % args))
@@ -299,7 +299,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         path = self.path.split('?')[0]
         if path == '/api/health':
-            self._json({'ok': True, 'version': '1.0.0'})
+            self._json({'ok': True, 'version': '2.0.0'})
         elif path == '/api/scan/progress':
             self._json(scan_progress_payload())
         elif path == '/api/disk-usage':

@@ -38,17 +38,25 @@
 
 ### 4.1 一键安装（推荐）
 
-在 CMD 或 PowerShell 中均可执行：
+在 CMD 或 PowerShell 中均可执行（v2.0.0：内置多下载源容错与 TLS 1.2，请整行完整复制）：
 
 ```powershell
-powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1')"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12; $s=$null; foreach($u in @('https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1','https://ghfast.top/https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1','https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1')){ try{ $s=irm $u -TimeoutSec 20; break }catch{} }; if($s){ iex $s }else{ Write-Host '所有下载源均无法访问，请检查网络连接' }"
 ```
 
-> 提示：`irm ... | iex` 简写仅适用于 PowerShell；在 CMD 中会提示「irm 不是内部或外部命令」。上面的 `powershell -Command "..."` 形式在 CMD、PowerShell、Win+R 运行框中通用。
+> 提示：`irm ... | iex` 简写仅适用于 PowerShell；在 CMD 中会提示「irm 不是内部或外部命令」。上面的通用命令在 CMD、PowerShell 中均可执行。
 
-（纯 PowerShell 亦可用 `irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex`；海外网络可把域名换为 `raw.githubusercontent.com`）
+（纯 PowerShell 亦可用 `irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex`）
 
-脚本自动完成下载、安装、注册 `c-clean` 命令、创建开始菜单快捷方式「C盘垃圾清理」、检测并安装 WebView2 运行时（如缺失），并立即启动应用。
+v2.0.0 安装脚本会自动测速选择最快下载源（国内网络不再直连慢速 GitHub）、SHA-256 校验文件完整性、失败自动换源，自动完成下载、安装、注册 `c-clean` 命令、创建开始菜单快捷方式「C盘垃圾清理」、检测并安装 WebView2 运行时（如缺失），并立即启动应用。
+
+常见报错：
+
+| 现象 | 原因与解决 |
+|------|-----------|
+| 「irm 不是内部或外部命令」 | 在 CMD 中使用了 PowerShell 专用简写，请用上面的通用命令 |
+| 「基础连接已经关闭」 | 网络到下载源的瞬时故障，通用命令已内置多源容错，直接重试即可 |
+| 下载很慢 | v2.0.0 已自动测速选最快镜像，如仍慢请重试（测速择优） |
 
 ### 4.2 启动方式（任选其一）
 
@@ -103,10 +111,10 @@ powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/cle
 
 ## 7 卸载
 
-CMD 或 PowerShell 中均可执行一键卸载：
+CMD 或 PowerShell 中均可执行一键卸载（请整行完整复制）：
 
 ```powershell
-powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1')"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12; $s=$null; foreach($u in @('https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1','https://ghfast.top/https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/uninstall-github.ps1','https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/uninstall-github.ps1')){ try{ $s=irm $u -TimeoutSec 20; break }catch{} }; if($s){ iex $s }else{ Write-Host '所有下载源均无法访问，请检查网络连接' }"
 ```
 
 纯 PowerShell 环境也可用简写：

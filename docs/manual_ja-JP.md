@@ -38,17 +38,25 @@
 
 ### 4.1 ワンクリックインストール（推奨）
 
-CMD と PowerShell のどちらでも実行できます：
+CMD と PowerShell のどちらでも実行できます（v2.0.0：複数ソースのフェイルオーバーと TLS 1.2 を内蔵。行全体をコピーしてください）：
 
 ```powershell
-powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1')"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12; $s=$null; foreach($u in @('https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1','https://ghfast.top/https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1','https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1')){ try{ $s=irm $u -TimeoutSec 20; break }catch{} }; if($s){ iex $s }else{ Write-Host '所有下载源均无法访问，请检查网络连接' }"
 ```
 
-> 補足：`irm ... | iex` の短縮形は PowerShell 専用です。CMD では「'irm' は内部コマンドまたは外部コマンドとして認識されていません」と表示されます。上記の `powershell -Command "..."` 形式は CMD・PowerShell・Win+R のファイル名を指定して実行のいずれでも利用できます。
+> 補足：`irm ... | iex` の短縮形は PowerShell 専用です。CMD では「'irm' は内部コマンドまたは外部コマンドとして認識されていません」と表示されます。上記の汎用コマンドを使用してください。
 
-（PowerShell 内では `irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex` も使用可能。中国大陸以外ではドメインを `raw.githubusercontent.com` に置き換えられます）
+（PowerShell 内では `irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex` も使用可能）
 
-スクリプトは自動的にダウンロード・インストールを行い、`c-clean` コマンドを登録し、スタートメニューにショートカット「C盘垃圾清理」を作成し、WebView2 ランタイム（不足時）をインストールして、アプリケーションを直ちに起動します。
+v2.0.0 インストーラーはミラー速度を自動測定して最速のソースからダウンロードし、SHA-256 でファイルを検証し、失敗時は次のミラーへ自動切り替えします。その後、自動的にダウンロード・インストールを行い、`c-clean` コマンドを登録し、スタートメニューにショートカット「C盘垃圾清理」を作成し、WebView2 ランタイム（不足時）をインストールして、アプリケーションを直ちに起動します。
+
+トラブルシューティング：
+
+| 症状 | 原因と対処 |
+|------|-----------|
+| 「'irm' は内部コマンド…」と表示 | CMD で PowerShell 専用の短縮形を使用した。上記の汎用コマンドを使用 |
+| 「基礎接続は閉じられました」 | ソースへのネットワークの一時的な障害。汎用コマンドはフェイルオーバー内蔵なので再試行してください |
+| ダウンロードが遅い | v2.0.0 は最速ミラーを自動選択。それでも遅い場合は再試行（速度測定で再選択） |
 
 ### 4.2 起動方法（いずれかを選択）
 
@@ -103,10 +111,10 @@ powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/cle
 
 ## 7 アンインストール
 
-CMD と PowerShell のどちらでも実行できるワンクリックアンインストール：
+CMD と PowerShell のどちらでも実行できるワンクリックアンインストール（行全体をコピーしてください）：
 
 ```powershell
-powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1')"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12; $s=$null; foreach($u in @('https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1','https://ghfast.top/https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/uninstall-github.ps1','https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/uninstall-github.ps1')){ try{ $s=irm $u -TimeoutSec 20; break }catch{} }; if($s){ iex $s }else{ Write-Host '所有下载源均无法访问，请检查网络连接' }"
 ```
 
 PowerShell 専用の短縮形：

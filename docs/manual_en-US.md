@@ -38,17 +38,25 @@ Any ordinary PC.
 
 ### 4.1 One-click install (recommended)
 
-Works in both CMD and PowerShell:
+Works in both CMD and PowerShell (v2.0.0: multi-source failover + TLS 1.2 built in; copy the whole line):
 
 ```powershell
-powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1')"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12; $s=$null; foreach($u in @('https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1','https://ghfast.top/https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1','https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1')){ try{ $s=irm $u -TimeoutSec 20; break }catch{} }; if($s){ iex $s }else{ Write-Host '所有下载源均无法访问，请检查网络连接' }"
 ```
 
-> Note: the `irm ... | iex` shorthand only works in PowerShell; in CMD it reports "'irm' is not recognized". The `powershell -Command "..."` form above works in CMD, PowerShell and the Win+R Run box.
+> Note: the `irm ... | iex` shorthand only works in PowerShell; in CMD it reports "'irm' is not recognized". Use the universal command above instead.
 
-(Inside PowerShell you may also use `irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex`; replace the domain with `raw.githubusercontent.com` outside mainland China.)
+(Inside PowerShell you may also use `irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex`.)
 
-The script automatically downloads and installs the app, registers the `c-clean` command, creates a Start Menu shortcut, installs the WebView2 Runtime if missing, and launches the app.
+The v2.0.0 installer automatically probes mirror speeds and downloads from the fastest source, verifies the exe with SHA-256, fails over to the next mirror on error, then installs the app, registers the `c-clean` command, creates a Start Menu shortcut, installs the WebView2 Runtime if missing, and launches the app.
+
+Troubleshooting:
+
+| Symptom | Cause / fix |
+|---------|------------|
+| "'irm' is not recognized" | You used the PowerShell-only shorthand in CMD; use the universal command above |
+| "The underlying connection was closed" | Transient network failure to a source; the universal command has built-in failover, just retry |
+| Slow download | v2.0.0 already picks the fastest mirror; if still slow, retry (speed-based selection) |
 
 ### 4.2 Launching (any of the following)
 
@@ -103,10 +111,10 @@ Click "跳过指引" (Skip Guide), then click "快速开始" (Quick Start) at th
 
 ## 7 Uninstall
 
-One-click uninstall, works in both CMD and PowerShell:
+One-click uninstall, works in both CMD and PowerShell (copy the whole line):
 
 ```powershell
-powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1')"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12; $s=$null; foreach($u in @('https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1','https://ghfast.top/https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/uninstall-github.ps1','https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/uninstall-github.ps1')){ try{ $s=irm $u -TimeoutSec 20; break }catch{} }; if($s){ iex $s }else{ Write-Host '所有下载源均无法访问，请检查网络连接' }"
 ```
 
 Shorthand (PowerShell only):

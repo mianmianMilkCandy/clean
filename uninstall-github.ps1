@@ -1,8 +1,8 @@
 # ============================================================
-#  C Drive Junk Cleaner - GitHub one-click uninstaller
+#  C Drive Junk Cleaner - GitHub one-click uninstaller  (v2.0.0)
 #
-#  Usage (works in both CMD and PowerShell):
-#      powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1')"
+#  Universal command (works in both CMD and PowerShell):
+#      powershell -Command "[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12; $s=$null; foreach($u in @('https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1','https://ghfast.top/https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/uninstall-github.ps1','https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/uninstall-github.ps1')){ try{ $s=irm $u -TimeoutSec 20; break }catch{} }; if($s){ iex $s }else{ Write-Host 'ALL DOWNLOAD SOURCES UNREACHABLE - CHECK NETWORK' }"
 #  Shorthand (PowerShell only):
 #      irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1 | iex
 #
@@ -16,6 +16,8 @@
 #    3. Remove install dir from user PATH
 #    4. Remove Start Menu shortcut
 #    5. Keep Edge WebView2 (shared system component)
+#
+#  Safe to re-run (idempotent).
 # ============================================================
 
 $ErrorActionPreference = 'Stop'

@@ -6,15 +6,15 @@ A lightweight (~20 MB) Windows desktop app that safely scans and cleans junk fil
 
 ---
 
-## 一键安装（One-click install）
+## 一键安装（One-click install）v2.0.0
 
-CMD 和 PowerShell 中均可执行（Works in both CMD and PowerShell）：
+CMD 和 PowerShell 中均可执行（Works in both CMD and PowerShell）。内置多下载源容错与 TLS 1.2，网络波动时自动切换源：
 
 ```powershell
-powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1')"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12; $s=$null; foreach($u in @('https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1','https://ghfast.top/https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1','https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/install-github.ps1')){ try{ $s=irm $u -TimeoutSec 20; break }catch{} }; if($s){ iex $s }else{ Write-Host '所有下载源均无法访问，请检查网络连接' }"
 ```
 
-> 注意：`irm ... | iex` 简写只能在 PowerShell 中使用；在 CMD 中会提示「irm 不是内部或外部命令」。上面的 `powershell -Command "..."` 形式在 CMD、PowerShell、Win+R 运行框中通用。
+> 注意：请整行完整复制（不要混入多余字符）。`irm ... | iex` 简写只能在 PowerShell 中使用，在 CMD 中会提示「irm 不是内部或外部命令」。
 
 纯 PowerShell 环境也可用简写：
 
@@ -22,9 +22,24 @@ powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/cle
 irm https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/install-github.ps1 | iex
 ```
 
-海外网络可以把域名换成 `raw.githubusercontent.com`。
+**v2.0.0 改进：**
 
-脚本自动完成：下载 `c-clean.exe` → 安装到用户目录 → 注册 `c-clean` 命令 → 创建开始菜单快捷方式「C盘垃圾清理」→ 检测并自动安装 Edge WebView2 运行时（如缺失）→ 立即启动。
+- 下载源自动测速选择最快镜像（解决国内直连 GitHub 慢/失败的问题，实测 20 MB 约 3~13 秒）
+- SHA-256 完整性校验，第三方镜像也无法投毒
+- 下载源自动故障转移 + 网络重试
+- 覆盖升级时自动停止旧版本进程
+- 快捷方式 / WebView2 步骤失败不再中断安装
+
+脚本自动完成：停止旧版本 → 测速选源 → 下载并校验 `c-clean.exe` → 安装到用户目录 → 注册 `c-clean` 命令 → 创建开始菜单快捷方式「C盘垃圾清理」→ 检测并自动安装 Edge WebView2 运行时（如缺失）→ 立即启动。
+
+**常见问题：**
+
+| 现象 | 原因与解决 |
+|------|-----------|
+| 「irm 不是内部或外部命令」 | 在 CMD 中使用了 PowerShell 专用简写，请用上面的通用命令 |
+| 「基础连接已经关闭」 | 网络到下载源的瞬时故障，通用命令已内置多源容错，直接重试即可 |
+| 下载很慢 | v2.0.0 已自动测速选最快镜像，如仍慢请重试（测速择优） |
+| 校验失败自动换源 | 正常容错行为，脚本会自动切换下一个下载源 |
 
 ## 功能特性
 
@@ -76,7 +91,7 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 CMD 和 PowerShell 中均可执行（Works in both CMD and PowerShell）：
 
 ```powershell
-powershell -Command "iex (irm 'https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1')"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12; $s=$null; foreach($u in @('https://cdn.jsdelivr.net/gh/mianmianMilkCandy/clean@main/uninstall-github.ps1','https://ghfast.top/https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/uninstall-github.ps1','https://raw.githubusercontent.com/mianmianMilkCandy/clean/main/uninstall-github.ps1')){ try{ $s=irm $u -TimeoutSec 20; break }catch{} }; if($s){ iex $s }else{ Write-Host '所有下载源均无法访问，请检查网络连接' }"
 ```
 
 纯 PowerShell 环境也可用简写：
